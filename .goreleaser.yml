@@ -5,33 +5,49 @@ before:
     # You may remove this if you don't use go modules.
     - go mod download
 builds:
-  -
-    ldflags:
-      -s -w
-    env:
+  - env:
       - CGO_ENABLED=0
+    ldflags:
+      -s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{ .CommitDate }} -X main.builtBy=goreleaser
     goos:
       - linux
       - darwin
+      - windows
+    goarch:
+      - "386"
+      - amd64
+      - arm
+      - arm64
 archives:
-  - replacements:
-      darwin: macOS
+  - name_template: '{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
+    replacements:
+      darwin: Darwin
       linux: Linux
+      windows: Windows
       386: i386
       amd64: x86_64
-      arm64: arm_64
+    format_overrides:
+    - goos: windows
+      format: zip
+    files:
+      - README.md
+      - LICENSE
+      - completions/*
+      - manpages/*
     # Archive name template.
     # Defaults:
     # - if format is `tar.gz`, `tar.xz`, `gz` or `zip`:
     #   - `{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ with .Arm }}v{{ . }}{{ end }}{{ with .Mips }}_{{ . }}{{ end }}{{ if not (eq .Amd64 "v1") }}{{ .Amd64 }}{{ end }}`
     # - if format is `binary`:
     #   - `{{ .Binary }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ with .Arm }}v{{ . }}{{ end }}{{ with .Mips }}_{{ . }}{{ end }}{{ if not (eq .Amd64 "v1") }}{{ .Amd64 }}{{ end }}`
-    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
     wrap_in_directory: "true"
+
 checksum:
   name_template: 'checksums.txt'
+
 snapshot:
   name_template: "{{ .Tag }}"
+
 changelog:
   sort: asc
   filters:
@@ -40,14 +56,11 @@ changelog:
       - '^test:'
 dockers:
   -
-    goos:
-      - linux
-      - darwin
+    goos: linux
     goarch:
       - amd64
-      - 386
       - arm64
-      - x86_64
+    use: buildx
     image_templates:
       - "masum0813/getcurrencyinfo:latest"
       - "masum0813/getcurrencyinfo:{{ .Tag }}"
