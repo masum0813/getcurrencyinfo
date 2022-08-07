@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning].
 
 - /
 
+## [0.0.4] - 2022-08-07
+
+### Changed
+
+- github actions file changed.
+
 ## [0.0.3] - 2022-08-07
 
 ### Added
