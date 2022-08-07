@@ -14,4 +14,8 @@
 # Dependency directories (remove the comment below to include it)
 # vendor/
 
+# Environment (remove the comment below to include it)
 .env
+
+# VSCode configuration
+.vscode/

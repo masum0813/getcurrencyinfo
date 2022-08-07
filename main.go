@@ -19,7 +19,7 @@ import "github.com/masum0813/getcurrencyinfo/cmd"
 
 var (
 	// VERSION is set during build
-	VERSION = "0.0.2"
+	VERSION = "0.0.3"
 )
 
 func main() {

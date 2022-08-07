@@ -9,12 +9,17 @@ and this project adheres to [Semantic Versioning].
 
 - /
 
+## [0.0.3] - 2022-08-07
+
+### Added
+
+- Some Configuration changes.
+
 ## [0.0.2] - 2022-08-07
 
 ### Added
 
 - Added currency gold rate endpoint.
-
 
 ## [0.0.1] - 2022-08-06
 
