@@ -1,27 +1,26 @@
-package main
+package getreq
 
 import (
-    "fmt"
-    "io/ioutil"
-    "log"
-    "net/http"
+	"io/ioutil"
+	"log"
+	"net/http"
 )
 
-func getData() {
+func GetData(requestUrL string) string {
 
-    resp, err := http.Get("https://www.tcmb.gov.tr/reeskontkur/202208/01082022-1300.xml")
+	response, err := http.Get(requestUrL)
 
-    if err != nil {
-        log.Fatal(err)
-    }
+	if err != nil {
+		log.Fatal(err)
+	}
 
-    defer resp.Body.Close()
+	defer response.Body.Close()
 
-    body, err := ioutil.ReadAll(resp.Body)
+	body, err := ioutil.ReadAll(response.Body)
 
-    if err != nil {
-        log.Fatal(err)
-    }
+	if err != nil {
+		log.Fatal(err)
+	}
 
-    fmt.Println(string(body))
+	return string(body)
 }

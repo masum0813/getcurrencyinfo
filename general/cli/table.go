@@ -40,9 +40,11 @@ func GenerateTable(doviz Doviz.Doviz, currency string) {
 			currencyDetail = "Altın 1000/1000"
 		default:
 			currencyDetail = "Not Found"
-
 		}
+
 		if v.DovizCinsi == currency || currency == "All" {
+			table.Append([]string{v.DovizCinsi, currencyDetail, fmt.Sprintf("%s₺", v.Alis)})
+		} else if currency == "GOLD" && (v.DovizCinsi == "XAU" || v.DovizCinsi == "XAS") {
 			table.Append([]string{v.DovizCinsi, currencyDetail, fmt.Sprintf("%s₺", v.Alis)})
 		}
 	}
