@@ -60,5 +60,12 @@ dockers:
     goos: linux
     use: buildx
     image_templates:
-      - "masum0813/getcurrencyinfo:latest"
-      - "masum0813/getcurrencyinfo:{{ .Tag }}"
+      - "github.com/masum0813/getcurrencyinfo:latest"
+      - "github.com/masum0813/getcurrencyinfo:{{ .Tag }}"
+    build_flag_templates:
+    - "--pull"
+    - "--label=org.opencontainers.image.created={{.Date}}"
+    - "--label=org.opencontainers.image.name={{.ProjectName}}"
+    - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+    - "--label=org.opencontainers.image.version={{.Version}}"
+    - "--label=org.opencontainers.image.source={{.GitURL}}"
