@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning].
 
 - /
 
+## [0.0.5] - 2022-08-07
+
+### Changed
+
+- added goreleaser.yaml
+
 ## [0.0.4] - 2022-08-07
 
 ### Changed
