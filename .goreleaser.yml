@@ -56,6 +56,7 @@ changelog:
       - '^test:'
 dockers:
   -
+    dockerfile: Dockerfile
     goos: linux
     use: buildx
     image_templates:
