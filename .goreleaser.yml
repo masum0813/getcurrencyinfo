@@ -43,6 +43,7 @@ changelog:
 
 dockers:
   -
+    dockerfile: Dockerfile
     goos: linux
     image_templates:
       - "masum0813/getcurrencyinfo:latest"
