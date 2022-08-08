@@ -47,13 +47,7 @@ changelog:
 
 dockers:
   -
-    goos:
-      - linux
-      - darwin
-    goarch:
-      - amd64
-      - arm64
-      - x86_64
+    goos: linux
     image_templates:
       - "masum0813/getcurrencyinfo:latest"
       - "masum0813/getcurrencyinfo:{{ .Tag }}"
